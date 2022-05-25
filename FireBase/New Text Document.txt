@@ -1,0 +1,26 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDPdW8_uOYN3qhrbCgGb1XiyACWodbHg6g",
+  authDomain: "findmypetdb-b26ab.firebaseapp.com",
+  databaseURL: "https://findmypetdb-b26ab-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "findmypetdb-b26ab",
+  storageBucket: "findmypetdb-b26ab.appspot.com",
+  messagingSenderId: "169094418422",
+  appId: "1:169094418422:web:716f64a4e172ef05e681d7"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+
+
+DB Secret:
+RNn7TJgcq4NosVMNRyhYSGDxQBGeI5uC15LyYBDF
+
+
+https://findmypetdb-b26ab-default-rtdb.europe-west1.firebasedatabase.app/s
