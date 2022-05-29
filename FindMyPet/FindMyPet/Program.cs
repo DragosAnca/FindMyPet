@@ -1,4 +1,4 @@
-using FindMyPet.Controllers;
+using FindMyPet;
 using FindMyPet.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<FindMyPetDatabaseSettings>(
     builder.Configuration.GetSection("FindMyPetDatabase"));
 
-builder.Services.AddSingleton<AnnService>();
+builder.Services.AddSingleton<FormService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -6,6 +6,6 @@
 
         public string DatabaseName { get; set; } = null!;
 
-        public string AnnCollectionName { get; set; } = null!;
+        public string FormCollectionName { get; set; } = null!;
     }
 }

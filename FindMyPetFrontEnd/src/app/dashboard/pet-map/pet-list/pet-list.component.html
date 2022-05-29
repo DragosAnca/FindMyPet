@@ -1,0 +1,9 @@
+<p>pet-list works!</p>
+
+<div *ngFor="let form of formList">
+  {{form.nume}}
+</div>
+<input matInput type="text" [(ngModel)]="searchId" >
+<button (click)="onSearchClick()">CLICK TO SEARCH BY ID</button>
+{{searchedForm.nume}}
+{{searchedForm.rasa}}

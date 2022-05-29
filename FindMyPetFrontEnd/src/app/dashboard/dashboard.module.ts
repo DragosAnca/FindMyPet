@@ -9,10 +9,11 @@ import { AboutComponent } from './about/about.component';
 import { PetMapComponent } from './pet-map/pet-map.component';
 import { TipsComponent } from './tips/tips.component';
 import { PetFormComponent } from './pet-form/pet-form.component';
-import { PetListEntryComponent } from './pet-list-entry/pet-list-entry.component';
-import { PetListComponent } from './pet-list/pet-list.component';
+import { PetListEntryComponent } from './pet-map/pet-list-entry/pet-list-entry.component';
+import { PetListComponent } from './pet-map/pet-list/pet-list.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,12 +27,14 @@ import { MatIconModule } from '@angular/material/icon';
     PetFormComponent,
     PetListEntryComponent,
     PetListComponent,
+
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MatToolbarModule,
     MatIconModule,
+    FormsModule
   ],
   bootstrap: [DashboardModule]
 })
