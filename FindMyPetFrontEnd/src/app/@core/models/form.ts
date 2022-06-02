@@ -1,16 +1,16 @@
 export class Form{
   id? :string;
-  animalPierdutSauGasit? :string;
-  specia?: string;
-  rasa?: string;
-  nume?: string;
-  accesorii?: string;
-  culoare?: string;
-  talie?: string;
+  lostOrFoundPet? :string;
+  species?: string;
+  breed?: string;
+  name?: string;
+  accessories?: string;
+  color?: string;
+  sized?: string;
   chip?: string;
-  semne?: string;
-  poze?: string;
-  coordonate? :string;
+  marks?: string;
+  pic?: string;
+  coordonates? :string;
   emailContact?: string;
-  telefon?: string;
+  phone?: string;
 }

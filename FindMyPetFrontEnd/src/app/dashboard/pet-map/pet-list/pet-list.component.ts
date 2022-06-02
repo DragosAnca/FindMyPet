@@ -13,6 +13,7 @@ export class PetListComponent {
   formList: Form[] = [];
   searchedForm: Form = new Form();
   searchId: string = '';
+  searchName: string = '';
   subscriptions: Subscription[] = [];
   constructor(private formCollectionService:FormCollectionService) {
     this.formCollectionService.getAll().subscribe(data => {
@@ -22,11 +23,20 @@ export class PetListComponent {
 
   }
 
-  public onSearchClick(){
+  public onSearchClickById(){
     console.log(this.searchId);
     this.subscriptions.push(this.formCollectionService.getById(this.searchId).subscribe(data => {
        this.searchedForm = data;
-      console.log(this.searchedForm.nume);
+      console.log(this.searchedForm.name);
+     })
+     )
+  }
+
+  public onSearchClickByName(){
+    console.log(this.searchName);
+    this.subscriptions.push(this.formCollectionService.getByName(this.searchName).subscribe(data => {
+       this.searchedForm = data;
+      console.log(this.searchedForm.name);
      })
      )
   }

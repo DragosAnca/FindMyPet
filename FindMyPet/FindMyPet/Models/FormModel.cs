@@ -11,44 +11,44 @@ namespace FindMyPet.Models
         public string Id { get; set; }
 
         [BsonElement(elementName: "lostOrFoundPet")]
-        public string lostOrFoundPet { get; set; }
+        public string LostOrFoundPet { get; set; }
 
         [BsonElement(elementName:"species")]
-        public string species { get; set; }
+        public string Species { get; set; }
 
         [BsonElement(elementName:"breed")]
-        public string breed { get; set; }
+        public string Breed { get; set; }
 
         [BsonElement(elementName:"name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [BsonElement(elementName: "accessories")]
-        public string accessories { get; set; }
+        public string Accessories { get; set; }
 
         [BsonElement(elementName: "color")]
-        public string color { get; set; }
+        public string Color { get; set; }
 
         [BsonElement(elementName: "sized")]
-        public string sized { get; set; }
+        public string Sized { get; set; }
 
         [BsonElement(elementName: "chip")]
-        public string chip { get; set; }
+        public string Chip { get; set; }
 
-        [BsonElement(elementName: "semne")]
-        public string semne { get; set; }
+        [BsonElement(elementName: "marks")]
+        public string Marks { get; set; }
 
-        [BsonElement(elementName: "poze")]
-        public string poze { get; set; }
+        [BsonElement(elementName: "pic")]
+        public string Pic { get; set; }
 
-        [BsonElement(elementName: "coordonate")]
-        public string coordonate { get; set; }
+        [BsonElement(elementName: "coordonates")]
+        public string Coordonates { get; set; }
 
 
         [BsonElement(elementName: "emailContact")]
-        public string emailContact { get; set; }
+        public string EmailContact { get; set; }
 
-        [BsonElement(elementName: "telefon")]
-        public int telefonContact { get; set; }
+        [BsonElement(elementName: "phone")]
+        public int Phone { get; set; }
 
     }
 }

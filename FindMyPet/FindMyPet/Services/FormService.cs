@@ -27,6 +27,9 @@ namespace FindMyPet
         public async Task<FormModel?> GetAsync(string id) =>
             await formCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
+        public async Task<FormModel> GetAsyncByName(string name) =>
+            await formCollection.Find(x => x.Name == name).FirstOrDefaultAsync();
+
         public async Task CreateAsync(FormModel newForm) =>
             await formCollection.InsertOneAsync(newForm);
 

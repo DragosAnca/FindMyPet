@@ -1,9 +1,14 @@
 <p>pet-list works!</p>
 
 <div *ngFor="let form of formList">
-  {{form.nume}}
+  {{form.name}}
 </div>
 <input matInput type="text" [(ngModel)]="searchId" >
-<button (click)="onSearchClick()">CLICK TO SEARCH BY ID</button>
-{{searchedForm.nume}}
-{{searchedForm.rasa}}
+<button (click)="onSearchClickById()">CLICK TO SEARCH BY ID</button>
+{{searchedForm.name}}
+{{searchedForm.species}}
+
+<input matInput type="text" [(ngModel)]="searchName" >
+<button (click)="onSearchClickByName()">CLICK TO SEARCH BY Name</button>
+{{searchedForm.name}}
+{{searchedForm.species}}

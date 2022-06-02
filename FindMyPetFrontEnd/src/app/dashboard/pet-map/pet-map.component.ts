@@ -16,11 +16,11 @@ export class PetMapComponent implements OnInit {
     let loader = new Loader({
       apiKey: 'AIzaSyDK_j5J4mn0O15yftYyrA3f0qAVVwdKhzs'
     })
-    
+
     loader.load().then(() => {
       new google.maps.Map(document.getElementById("map") as HTMLElement,{
-        center: { lat: 0, lng: 0},
-        zoom: 6
+        center: { lat: 45.438221, lng: 28.056339},
+        zoom: 12
       })
     })
  }

@@ -18,10 +18,24 @@ namespace FindMyPet.Controllers
         public async Task<List<FormModel>> Get() =>
             await formService.GetAsync();
 
+
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<FormModel>> GetById(string id)
         {
             var form = await formService.GetAsync(id);
+
+            if (form is null)
+            {
+                return NotFound();
+            }
+
+            return form;
+        }
+
+        [HttpGet("name/{Name}")]
+        public async Task<ActionResult<FormModel>> GetByName(string name)
+        {
+            FormModel form = await formService.GetAsyncByName(name);
 
             if (form is null)
             {

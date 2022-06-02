@@ -17,4 +17,8 @@ export class FormCollectionService {
   public getById(id: string): Observable<Form>{
     return this.httpService.get(`form/${id}`)
   }
+
+  public getByName(name: string): Observable<Form>{
+    return this.httpService.get(`form/name/${name}`)
+  }
 }
