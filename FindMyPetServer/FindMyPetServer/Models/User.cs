@@ -1,9 +1,10 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace FindMyPetServer.Models
 {
-    public class User
+    public class User : IComparable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -13,5 +14,38 @@ namespace FindMyPetServer.Models
 
         [BsonElement("password")]
         public string Password { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is User))
+            {
+                return false;
+            }
+
+            return (this.Email == ((User) obj).Email);
+        }
+
+        public int CompareTo(object user)
+        {
+            if (user is null)
+            {
+                return 1;
+            }
+
+            if (!(user is User))
+            {
+                throw new ArgumentException();
+            }
+
+            if (this.Equals(user))
+            {
+                return 0;
+            }
+
+            string emailToBeCompared = Email;
+
+            return emailToBeCompared.CompareTo(((User) user).Email);
+
+        }
     }
 }

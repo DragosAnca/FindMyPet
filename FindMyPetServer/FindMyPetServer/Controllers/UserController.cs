@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using FindMyPetServer.Interfaces;
 using FindMyPetServer.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.CookiePolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FindMyPetServer.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : Controller
@@ -17,7 +21,7 @@ namespace FindMyPetServer.Controllers
             this.userService = userService;
         }
 
-        [Authorize]
+        
         [HttpGet]
         public ActionResult<List<User>> GetUsers()
         {
@@ -32,23 +36,39 @@ namespace FindMyPetServer.Controllers
             return Json(user);
         }
 
-        [HttpPost]
-        public ActionResult<User> Create(User user)
-        {
-            userService.Create(user);
+        //TODO  Update user endpoint
 
-            return Json(user);
+        [AllowAnonymous]
+        [Route("register")]
+        [HttpPost]
+        public ActionResult<User> Register(User newUser)
+        {
+            
+                if (!(userService.GetUsers().FirstOrDefault(x => x.Equals(newUser)) is null))
+                {
+                    return Conflict("Email already registered");
+                }
+            
+            userService.Create(newUser);
+
+            return Json(newUser);
         }
 
         [AllowAnonymous]
-        [Route("authenticate")]
+        [Route("login")]
         [HttpPost]
         public ActionResult Login( [FromBody] User user)
         {
             var token = userService.Authenticate(user.Email, user.Password);
 
             if (token == null)
-                return Unauthorized();
+                return Conflict("Username or password incorrect");
+
+            // if ((userService.GetUsers().FirstOrDefault(x => x.Password.Equals(user.Password)) is null))
+            // {
+            //     return Conflict("password incorrect");
+            // }
+
             return Ok(new {token, user});
         }
     }
