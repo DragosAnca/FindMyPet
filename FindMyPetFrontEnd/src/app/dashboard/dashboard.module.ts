@@ -14,6 +14,7 @@ import { PetListComponent } from './pet-map/pet-list/pet-list.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     DashboardRoutingModule,
     MatToolbarModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    MatCardModule
   ],
   bootstrap: [DashboardModule]
 })

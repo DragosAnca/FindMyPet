@@ -39,8 +39,11 @@ namespace FindMyPetServer.Models
         [BsonElement(elementName: "pic")]
         public string Pic { get; set; }
 
-        [BsonElement(elementName: "coordonates")]
-        public string Coordonates { get; set; }
+        [BsonElement(elementName: "lat")]
+        public string Lat { get; set; }
+
+        [BsonElement(elementName: "long")]
+        public string Long { get; set; }
 
 
         [BsonElement(elementName: "emailContact")]
@@ -49,5 +52,7 @@ namespace FindMyPetServer.Models
         [BsonElement(elementName: "phone")]
         public int Phone { get; set; }
 
+        [BsonElement(elementName: "username")]
+        public string Username { get; set; }
     }
 }

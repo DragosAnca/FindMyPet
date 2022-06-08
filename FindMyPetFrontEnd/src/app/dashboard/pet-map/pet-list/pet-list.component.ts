@@ -11,37 +11,52 @@ import { FormCollectionService } from 'src/app/@core/services/form-collection.se
 export class PetListComponent {
 
   formList: Form[] = [];
-  searchedForm: Form = new Form();
-  searchId: string = '';
-  searchName: string = '';
-  subscriptions: Subscription[] = [];
+  latArray: string[] = [];
+  lat!: string
+  lonArray: string[] = [];
+  // searchedForm: Form = new Form();
+  // searchId: string = '';
+  // searchName: string = '';
+  // subscriptions: Subscription[] = [];
   constructor(private formCollectionService:FormCollectionService) {
     this.formCollectionService.getAll().subscribe(data => {
-      this.formList = data;
-      }
-    )
+      this.formList = data,
+      console.log(data)
+      });
+
+
+
 
   }
 
-  public onSearchClickById(){
-    console.log(this.searchId);
-    this.subscriptions.push(this.formCollectionService.getById(this.searchId).subscribe(data => {
-       this.searchedForm = data;
-      console.log(this.searchedForm.name);
-     })
-     )
+
+  ngOnInit(): void{
+    this.formList.forEach((element: Form) => {
+      console.log(element),
+      this.latArray.push(element.lat),
+      console.log(element.lat)
+    });
   }
 
-  public onSearchClickByName(){
-    console.log(this.searchName);
-    this.subscriptions.push(this.formCollectionService.getByName(this.searchName).subscribe(data => {
-       this.searchedForm = data;
-      console.log(this.searchedForm.name);
-     })
-     )
-  }
+  // public onSearchClickById(){
+  //   console.log(this.searchId);
+  //   this.subscriptions.push(this.formCollectionService.getById(this.searchId).subscribe(data => {
+  //      this.searchedForm = data;
+  //     console.log(this.searchedForm.name);
+  //    })
+  //    )
+  // }
 
-  ngOnFinalize(): void{
-      this.subscriptions.forEach(x => x.unsubscribe())
-  }
+  // public onSearchClickByName(){
+  //   console.log(this.searchName);
+  //   this.subscriptions.push(this.formCollectionService.getByName(this.searchName).subscribe(data => {
+  //      this.searchedForm = data;
+  //     console.log(this.searchedForm.name);
+  //    })
+  //    )
+  // }
+
+  // ngOnFinalize(): void{
+  //     this.subscriptions.forEach(x => x.unsubscribe())
+  // }
 }

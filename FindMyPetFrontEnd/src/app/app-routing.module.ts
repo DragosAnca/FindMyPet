@@ -4,8 +4,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: 'app',
-    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+  },
+  {path: 'auth',
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule),
   },
   { path: '**', component: NotFoundComponent, pathMatch: "full"}
 ];
