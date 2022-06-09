@@ -11,7 +11,7 @@ export class Form{
   marks?: string;
   pic?: string;
   lat!: string;
-  long?: string;
+  long!: string;
   emailContact?: string;
   phone?: string;
   username?: string;

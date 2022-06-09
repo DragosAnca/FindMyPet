@@ -9,12 +9,12 @@ import { AboutComponent } from './about/about.component';
 import { PetMapComponent } from './pet-map/pet-map.component';
 import { TipsComponent } from './tips/tips.component';
 import { PetFormComponent } from './pet-map/pet-form/pet-form.component';
-import { PetListEntryComponent } from './pet-map/pet-list-entry/pet-list-entry.component';
-import { PetListComponent } from './pet-map/pet-list/pet-list.component';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { PetListEntryComponent } from './pet-map/pet-list-entry/pet-list-entry.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +27,7 @@ import { MatCardModule } from '@angular/material/card';
     TipsComponent,
     PetFormComponent,
     PetListEntryComponent,
-    PetListComponent,
-
+    PetMapComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +35,7 @@ import { MatCardModule } from '@angular/material/card';
     MatToolbarModule,
     MatIconModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
   ],
   bootstrap: [DashboardModule]
 })
