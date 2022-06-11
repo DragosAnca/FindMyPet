@@ -4,6 +4,7 @@ using FindMyPetServer.Interfaces;
 using FindMyPetServer.Models;
 using FindMyPetServer.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FindMyPetServer.Controllers
 {
@@ -35,18 +36,8 @@ namespace FindMyPetServer.Controllers
             return form;
         }
 
-        [HttpGet("name/{Name}")]
-        public async Task<ActionResult<FormModel>> GetByName(string name)
-        {
-            FormModel form = await formService.GetAsyncByName(name);
-
-            if (form is null)
-            {
-                return NotFound();
-            }
-
-            return form;
-        }
+        [HttpGet("email/{Email}")]
+        public async Task<List<FormModel>> GetByEmail(string email) => await formService.GetAsyncByEmail(email);
 
         [HttpPost]
         public async Task<IActionResult> Post(FormModel newForm)

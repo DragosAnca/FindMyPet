@@ -8,7 +8,7 @@ namespace FindMyPetServer.Interfaces
     {
         Task<List<FormModel>> GetAsync();
         Task<FormModel?> GetAsync(string id);
-        Task<FormModel?> GetAsyncByName(string name);
+        Task<List<FormModel?>> GetAsyncByEmail(string email);
         Task CreateAsync(FormModel newForm);
         Task UpdateAsync(string id, FormModel updatedForm);
         Task RemoveAsync(string id);

@@ -10,7 +10,9 @@ export class Form{
   chip?: string;
   marks?: string;
   pic?: string;
-  coordonates? :string;
+  lat!: number;
+  lng!: number;
   emailContact?: string;
   phone?: string;
+  username?: string;
 }

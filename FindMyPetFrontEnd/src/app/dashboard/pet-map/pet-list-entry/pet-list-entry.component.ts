@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Form } from 'src/app/@core/models/form';
 
 @Component({
   selector: 'app-pet-list-entry',
@@ -7,7 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PetListEntryComponent implements OnInit {
 
-  constructor() { }
+  constructor()
+   { }
 
   ngOnInit(): void {
   }
