@@ -12,9 +12,11 @@ import { PetFormComponent } from './pet-map/pet-form/pet-form.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { PetListEntryComponent } from './pet-map/pet-list-entry/pet-list-entry.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {  MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { PetListEntryComponent } from './pet-map/pet-list-entry/pet-list-entry.c
     MatIconModule,
     FormsModule,
     MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ],
   bootstrap: [DashboardModule]
 })

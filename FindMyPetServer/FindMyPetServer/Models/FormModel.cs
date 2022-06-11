@@ -45,12 +45,11 @@ namespace FindMyPetServer.Models
         [BsonElement(elementName: "lng")]
         public string Lng { get; set; }
 
-
         [BsonElement(elementName: "emailContact")]
         public string EmailContact { get; set; }
 
         [BsonElement(elementName: "phone")]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [BsonElement(elementName: "username")]
         public string Username { get; set; }

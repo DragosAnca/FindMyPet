@@ -1,3 +1,52 @@
-<p>pet-form works!</p>
+<div>
+  <form [formGroup]="petForm" (ngSubmit)="onSubmit()">
+
+    <label for="lostOrFoundPet"> Lost or found pet:</label>
+    <input id="lostOrFoundPet" type ="text" formControlName="lostOrFoundPet">
+
+    <label for="species"> species:</label>
+    <input id="species" type ="text" formControlName="species">
+
+    <label for="breed"> breed:</label>
+    <input id="breed" type ="text" formControlName="breed">
+
+    <label for="name"> name:</label>
+    <input id="name" type ="text" formControlName="name">
+
+    <label for="accessories"> accessories:</label>
+    <input id="accessories" type ="text" formControlName="accessories">
+
+    <label for="color"> color:</label>
+    <input id="color" type ="text" formControlName="color">
+
+    <label for="sized"> sized:</label>
+    <input id="sized" type ="text" formControlName="sized">
+
+    <label for="chip"> chipt:</label>
+    <input id="chip" type ="text" formControlName="chip">
+
+    <label for="marks"> marks:</label>
+    <input id="marks" type ="text" formControlName="marks">
+
+    <label for="pic"> pic:</label>
+    <input id="pic" type ="text" formControlName="pic">
+
+    <label for="location"> location</label>
 
 
+    <label for="emailContact"> emailContact</label>
+    <input id="emailContact" type ="text" formControlName="emailContact">
+
+    <label for="phone"> phone:</label>
+    <input id="phone" type ="text" formControlName="phone">
+
+    <label for="username"> username:</label>
+    <input id="username" type ="text" formControlName="username">
+
+    <p>Complete the form to enable button.</p>
+
+
+    <button type="submit"  >Submit</button>
+  </form>
+
+</div>

@@ -1,10 +1,10 @@
 <p>pet-map works!</p>
-<app-pet-form></app-pet-form>
+<app-pet-form [coordinates]="coordinatesFromMapClick"></app-pet-form>
 
-  <div *ngFor="let form of formList"> -->
 
-  </div>
-  <div *ngFor="let form of formList">
+
+
+  <div *ngFor="let form of lostFormList">
   <mat-card class="pet-list-entry">
     <mat-card-title-group>
       <mat-card-title>Nume: {{form.name}}</mat-card-title>
@@ -13,6 +13,19 @@
     </mat-card-title-group>
     <mat-card-content>
       Pierdut de: {{form.username}} {{form.emailContact}}
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngFor="let form of foundFormList">
+  <mat-card class="pet-list-entry">
+    <mat-card-title-group>
+      <mat-card-title>Nume: {{form.name}}</mat-card-title>
+      <mat-card-subtitle>Rasa: {{form.breed}}</mat-card-subtitle>
+      <img mat-card-lg-image src="{{'data:image/jpg;base64,' + form.pic}}" >
+    </mat-card-title-group>
+    <mat-card-content>
+      Gasit de: {{form.username}} {{form.emailContact}}
     </mat-card-content>
   </mat-card>
 </div>

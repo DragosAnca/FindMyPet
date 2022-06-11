@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using FindMyPetServer.Interfaces;
 using FindMyPetServer.Models;
@@ -39,12 +40,14 @@ namespace FindMyPetServer.Controllers
         [HttpGet("email/{Email}")]
         public async Task<List<FormModel>> GetByEmail(string email) => await formService.GetAsyncByEmail(email);
 
-        [HttpPost]
+        [HttpPost("createform")]
         public async Task<IActionResult> Post(FormModel newForm)
         {
+            Console.WriteLine("endpoint reached");
             await formService.CreateAsync(newForm);
 
             return CreatedAtAction(nameof(Get), new { id = newForm.Id }, newForm);
+
         }
 
         [HttpPut("{id:length(24)}")]
