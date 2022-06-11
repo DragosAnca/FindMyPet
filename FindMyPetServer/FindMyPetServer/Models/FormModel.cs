@@ -42,8 +42,8 @@ namespace FindMyPetServer.Models
         [BsonElement(elementName: "lat")]
         public string Lat { get; set; }
 
-        [BsonElement(elementName: "long")]
-        public string Long { get; set; }
+        [BsonElement(elementName: "lng")]
+        public string Lng { get; set; }
 
 
         [BsonElement(elementName: "emailContact")]

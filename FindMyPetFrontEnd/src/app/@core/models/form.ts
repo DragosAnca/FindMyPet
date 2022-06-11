@@ -10,8 +10,8 @@ export class Form{
   chip?: string;
   marks?: string;
   pic?: string;
-  lat!: string;
-  long!: string;
+  lat!: number;
+  lng!: number;
   emailContact?: string;
   phone?: string;
   username?: string;
