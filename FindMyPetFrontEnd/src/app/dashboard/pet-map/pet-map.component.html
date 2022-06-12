@@ -3,8 +3,8 @@
 
 
 
-
-  <div *ngFor="let form of lostFormList">
+<div *ngIf="showLostFormList">
+  <div *ngFor="let form of lostFormList" >
   <mat-card class="pet-list-entry">
     <mat-card-title-group>
       <mat-card-title>Nume: {{form.name}}</mat-card-title>
@@ -16,7 +16,8 @@
     </mat-card-content>
   </mat-card>
 </div>
-
+</div>
+<div *ngIf="showFoundFormList">
 <div *ngFor="let form of foundFormList">
   <mat-card class="pet-list-entry">
     <mat-card-title-group>
@@ -29,7 +30,11 @@
     </mat-card-content>
   </mat-card>
 </div>
-
+</div>
+<div>
+<button (click)="hideFoundMarkersFromMarkerList()">Lost pets markers</button>
+<button (click)="hideLostMarkersFromMarkerList()">Found pets markers</button>
+</div>
 <div class="full" id="map">
 
 

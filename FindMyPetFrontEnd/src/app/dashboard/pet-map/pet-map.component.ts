@@ -5,7 +5,6 @@ import { Form } from 'src/app/@core/models/form';
 import { Loader } from '@googlemaps/js-api-loader';
 import { FormCollectionService } from 'src/app/@core/services/form-collection.service';
 import { styles } from './map-styles';
-import { Marker } from 'src/app/@core/models/marker';
 import { Coordinates } from 'src/app/@core/models/coordinates';
 
 
@@ -21,27 +20,24 @@ export class PetMapComponent implements OnInit {
   lostFormList: Form[] = [];
   foundFormList: Form[] = [];
 
+  showLostFormList: boolean = false;
+  showFoundFormList: boolean = false;
+
+  googleMarkerList: google.maps.Marker [] = [];
+  lostGoogleMarkerList: google.maps.Marker [] = [];
+  foundGoogleMarkerList: google.maps.Marker [] = [];
+
   form!: Form;
 
-  title = "google-maps"
+  infoWindow:google.maps.InfoWindow;
+
+
 
   private map!: google.maps.Map
 
-  markerList: Marker[] = [];
-  lostMarkerList: Marker[] = [];
-  foundMarkerList: Marker[] = [];
-
   coordinatesFromMapClick: Coordinates = new Coordinates;
 
-
-
-
-  constructor(private formCollectionService:FormCollectionService) {
-
-
-
-
-  }
+  constructor(private formCollectionService:FormCollectionService) {}
 
   ngOnInit(): void {
 
@@ -58,11 +54,15 @@ export class PetMapComponent implements OnInit {
         lng: 28.056339,
       };
 
+
+
       this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
         center: location,
         zoom: 12,
         styles: styles,
       })
+
+
 
       this.formCollectionService.getAll().subscribe(data => {
 
@@ -71,21 +71,46 @@ export class PetMapComponent implements OnInit {
           //Creatin the lost and found pet lists and markers
           if(x.lostOrFoundPet == "lost"){
 
-            const mark = new Marker(x.lat as unknown as number, x.lng as unknown as number);
-            this.lostMarkerList.push(mark);
+            const mark = new google.maps.Marker({
+              position: new google.maps.LatLng(x.lat as unknown as number, x.lng as unknown as number),
+              map: this.map
+
+            })
+            // Add a click listener for each marker, and set up the info window.
+            mark.addListener("click", () => {
+              infoWindow.close();
+              infoWindow.setContent(x.name);
+              infoWindow.open(mark.getMap(), mark);
+            });
+
+            this.googleMarkerList.push(mark);
+            this.lostGoogleMarkerList.push(mark);
             this.lostFormList.push(x);
+
           }
+
           else{
-            const mark = new Marker(x.lat as unknown as number, x.lng as unknown as number);
-            this.foundMarkerList.push(mark);
+
+            const mark = new google.maps.Marker({
+              position: new google.maps.LatLng(x.lat as unknown as number, x.lng as unknown as number),
+              map: this.map
+            })
+            // Add a click listener for each marker, and set up the info window.
+            mark.addListener("click", () => {
+              infoWindow.close();
+              infoWindow.setContent(x.name);
+              infoWindow.open(mark.getMap(), mark);
+            });
+
+            this.googleMarkerList.push(mark);
+            this.foundGoogleMarkerList.push(mark);
             this.foundFormList.push(x);
+
           }
         })
 
 
-        console.log(this.markerList)
-
-        this.createMarkerList(this.lostMarkerList);
+        // this.createMarkerList();
         ///Create event to show only lost or found marker list
         });
 
@@ -135,21 +160,40 @@ export class PetMapComponent implements OnInit {
 }
 
 
-private createMarkerList(markerList: Marker[]){
-  markerList.forEach(location => {
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(location.lat, location.lng),
-      map: this.map
-    });
-    console.log(marker)
+// public createMarkerList(){
+
+//   this.markerList.forEach(location => {
+//     var marker = new google.maps.Marker({
+//       position: new google.maps.LatLng(location.lat, location.lng),
+//       map: this.map
+//     });
+//     console.log(marker)
+//   })
+// }
+
+
+
+public hideLostMarkersFromMarkerList(){
+  this.lostGoogleMarkerList.forEach(x =>{
+    x.setMap(null);
   })
+  this.foundGoogleMarkerList.forEach(x =>{
+    x.setMap(this.map);
+  })
+  this.showLostFormList=false;
+  this.showFoundFormList=true;
 }
 
-
-
-
-
-
+public hideFoundMarkersFromMarkerList(){
+  this.foundGoogleMarkerList.forEach(x =>{
+    x.setMap(null);
+  })
+  this.lostGoogleMarkerList.forEach(x =>{
+    x.setMap(this.map);
+  })
+  this.showFoundFormList=false;
+  this.showLostFormList=true;
+}
 
 
 }
