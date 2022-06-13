@@ -12,8 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EmailService;
+using FindMyPetServer.DTOs;
 using FindMyPetServer.Interfaces;
-using FindMyPetServer.Models;
 using FindMyPetServer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
@@ -33,6 +34,13 @@ namespace FindMyPetServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var emailConfig = Configuration
+                .GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+
+            services.AddScoped<IEmailSender, EmailSender>();
+
+            services.AddSingleton(emailConfig);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

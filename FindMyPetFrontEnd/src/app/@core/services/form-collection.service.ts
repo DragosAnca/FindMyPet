@@ -22,8 +22,8 @@ export class FormCollectionService {
     return this.httpService.get(`form/${id}`)
   }
 
-  public getByEmail(email: string): Observable<Form[]>{
-    return this.httpService.get(`form/email/${email}`)
+  public getByUsername(username: string): Observable<Form[]>{
+    return this.httpService.get(`form/username/${username}`)
   }
 
   public createForm(form: Form){

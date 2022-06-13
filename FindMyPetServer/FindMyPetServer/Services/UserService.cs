@@ -4,8 +4,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using FindMyPetServer.DTOs;
 using FindMyPetServer.Interfaces;
-using FindMyPetServer.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -36,7 +36,9 @@ namespace FindMyPetServer.Services
 
         public List<User> GetUsers() => userCollection.Find(userCollection => true).ToList();
 
-        public User GetUser(string email) =>
+        public User GetUser(string username) =>
+            userCollection.Find<User>(userCollection => userCollection.Username == username).FirstOrDefault();
+        public User GetUserByEmail(string email) =>
             userCollection.Find<User>(userCollection => userCollection.Email == email).FirstOrDefault();
 
         public User Create(User user)
@@ -46,9 +48,9 @@ namespace FindMyPetServer.Services
             return user;
         }
         //TODO Update user service 
-        public string Authenticate(string email, string password)
+        public string Authenticate(string username, string password)
         {
-            var user = this.userCollection.Find(x => x.Email == email && x.Password == password).FirstOrDefault();
+            var user = this.userCollection.Find(x => x.Username == username && x.Password == password).FirstOrDefault();
 
             if (user == null)
                 return null;
@@ -59,7 +61,7 @@ namespace FindMyPetServer.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(JwtRegisteredClaimNames.Email, email),
+                    new Claim(JwtRegisteredClaimNames.Name, username),
                 }),
             
                 Expires = DateTime.UtcNow.AddHours(1),

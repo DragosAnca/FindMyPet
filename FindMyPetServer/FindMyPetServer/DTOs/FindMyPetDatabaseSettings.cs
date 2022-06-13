@@ -1,6 +1,6 @@
 ﻿using FindMyPetServer.Interfaces;
 
-namespace FindMyPetServer.Models
+namespace FindMyPetServer.DTOs
 {
     public class FindMyPetDatabaseSettings : IDatabaseSettings
     {

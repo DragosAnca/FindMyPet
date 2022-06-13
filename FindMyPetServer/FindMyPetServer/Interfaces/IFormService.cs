@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using FindMyPetServer.Models;
+using FindMyPetServer.DTOs;
 
 namespace FindMyPetServer.Interfaces
 {
@@ -8,7 +8,7 @@ namespace FindMyPetServer.Interfaces
     {
         Task<List<FormModel>> GetAsync();
         Task<FormModel?> GetAsync(string id);
-        Task<List<FormModel?>> GetAsyncByEmail(string email);
+        Task<List<FormModel?>> GetAsyncByUsername(string username);
         Task CreateAsync(FormModel newForm);
         Task UpdateAsync(string id, FormModel updatedForm);
         Task RemoveAsync(string id);

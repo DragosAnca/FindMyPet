@@ -5,7 +5,7 @@
     <mat-card-title-group>
       <mat-card-title>Nume: {{form.name}}</mat-card-title>
       <mat-card-subtitle>Rasa: {{form.breed}}</mat-card-subtitle>
-      <img mat-card-lg-image src="{{'data:image/jpg;base64,' + form.pic}}" >
+      <img mat-card-lg-image src="{{form.pic}}" >
     </mat-card-title-group>
     <mat-card-content>
       Pierdut de: {{form.username}} {{form.emailContact}}

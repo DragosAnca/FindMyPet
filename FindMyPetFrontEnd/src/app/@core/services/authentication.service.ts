@@ -4,6 +4,7 @@ import { HttpService } from '../api/http.service';
 import { User } from '../models/user';
 import { LocalStorageService } from './local-storage-service.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +18,16 @@ export class AuthenticationService {
     private  router: Router,
     ) { }
 
-  public login(email: string, password:string) {
+  public login(username: string, password:string) {
 
-    return this.httpService.post(`user/login`, {email, password}).subscribe((data) =>{
+    return this.httpService.post(`user/login`, {username, password}).subscribe((data) =>{
       if (data == "Username or password incorrect"){
         return;
       }
 
       this.localStorageService.put('token', data.token);
         this.localStorageService.put(
-          'email',
+          'username',
           this.getUserInfo(data),
         );
         this.router.navigate(['dashboard']);
@@ -58,11 +59,18 @@ export class AuthenticationService {
   }
 
   public getInfo(): string {
-    return this.localStorageService.get('email');
+    return this.localStorageService.get('username');
   }
 
   private getUserInfo(data: any): string {
-    return data.user.email;
+    return data.user.username;
+  }
+
+  public sendPasswordByEmail(email: string) {
+    this.httpService.get(`user/forgot/${email}`).subscribe((data) => {
+      console.warn(data)
+    });
+    this.router.navigate(['auth/login'])
   }
 
   //TODO Update service

@@ -102,7 +102,7 @@ export class PetFormComponent implements OnInit {
     form.lng = "";
     form.lng += this.coordinates.lng;
 
-    form.username = this.localStorageService.get("email");
+    form.username = this.localStorageService.get("username");
     console.warn("form.username", form.username);
 
     form.pic = this.base64code;

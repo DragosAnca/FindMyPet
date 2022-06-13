@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using FindMyPetServer.Models;
+using FindMyPetServer.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;

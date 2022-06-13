@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Form } from 'src/app/@core/models/form';
 import { AuthenticationService } from 'src/app/@core/services/authentication.service';
 import { FormCollectionService } from 'src/app/@core/services/form-collection.service';
@@ -18,7 +19,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formService.getByEmail(this.authService.getInfo()).subscribe(x => this.userFormList = x);
+    this.formService.getByUsername(this.authService.getInfo()).subscribe(x => this.userFormList = x);
   }
 
 }

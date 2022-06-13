@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EmailService;
+using FindMyPetServer.DTOs;
 using FindMyPetServer.Interfaces;
-using FindMyPetServer.Models;
 using FindMyPetServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -14,10 +15,15 @@ namespace FindMyPetServer.Controllers
     public class FormController : ControllerBase
     {
         private readonly IFormService formService;
+        private readonly IEmailSender emailSender;
 
 
-        public FormController(IFormService formService) =>
-            this.formService = formService;
+        public FormController(IFormService formService, IEmailSender emailSender)
+        {
+        
+        this.formService = formService;
+        this.emailSender = emailSender;
+        }
 
         [HttpGet]
         public async Task<List<FormModel>> Get() =>
@@ -37,8 +43,8 @@ namespace FindMyPetServer.Controllers
             return form;
         }
 
-        [HttpGet("email/{Email}")]
-        public async Task<List<FormModel>> GetByEmail(string email) => await formService.GetAsyncByEmail(email);
+        [HttpGet("username/{username}")]
+        public async Task<List<FormModel>> GetByEmail(string username) => await formService.GetAsyncByUsername(username);
 
 
         [HttpPost("createform")]
