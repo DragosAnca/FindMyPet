@@ -29,7 +29,7 @@
     <input id="marks" type ="text" formControlName="marks">
 
     <label for="pic"> pic:</label>
-    <input id="pic" type ="text" formControlName="pic">
+    <input id="pic" type="file" (change)="onChange($event)">
 
     <label for="location"> location</label>
 
@@ -40,8 +40,7 @@
     <label for="phone"> phone:</label>
     <input id="phone" type ="text" formControlName="phone">
 
-    <label for="username"> username:</label>
-    <input id="username" type ="text" formControlName="username">
+
 
     <p>Complete the form to enable button.</p>
 

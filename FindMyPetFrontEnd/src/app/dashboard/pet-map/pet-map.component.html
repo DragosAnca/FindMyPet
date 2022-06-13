@@ -1,5 +1,5 @@
 <p>pet-map works!</p>
-<app-pet-form [coordinates]="coordinatesFromMapClick"></app-pet-form>
+<app-pet-form [coordinates]="coordinatesFromMapClick" *ngIf="showForm"></app-pet-form>
 
 
 
@@ -9,7 +9,7 @@
     <mat-card-title-group>
       <mat-card-title>Nume: {{form.name}}</mat-card-title>
       <mat-card-subtitle>Rasa: {{form.breed}}</mat-card-subtitle>
-      <img mat-card-lg-image src="{{'data:image/jpg;base64,' + form.pic}}" >
+      <img mat-card-lg-image src="{{showPic(form)}}" >
     </mat-card-title-group>
     <mat-card-content>
       Pierdut de: {{form.username}} {{form.emailContact}}
@@ -23,7 +23,7 @@
     <mat-card-title-group>
       <mat-card-title>Nume: {{form.name}}</mat-card-title>
       <mat-card-subtitle>Rasa: {{form.breed}}</mat-card-subtitle>
-      <img mat-card-lg-image src="{{'data:image/jpg;base64,' + form.pic}}" >
+      <img mat-card-lg-image src="{{[showPic(form)]}}" >
     </mat-card-title-group>
     <mat-card-content>
       Gasit de: {{form.username}} {{form.emailContact}}
@@ -35,8 +35,7 @@
   <mat-card-title-group>
     <mat-card-title>Nume: {{selectedFormFromMark.name}}</mat-card-title>
     <mat-card-subtitle>Rasa: {{selectedFormFromMark.breed}}</mat-card-subtitle>
-    <img mat-card-lg-image src="{{'data:image/jpg;base64,' + selectedFormFromMark.pic}}" >
-  </mat-card-title-group>
+    <img mat-card-lg-image src={{showPic(selectedFormFromMark)}} >  </mat-card-title-group>
   <mat-card-content>
     {{selectedFormFromMark.lostOrFoundPet}} by: {{selectedFormFromMark.username}} {{selectedFormFromMark.emailContact}}
   </mat-card-content>

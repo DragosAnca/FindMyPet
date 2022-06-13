@@ -3,17 +3,18 @@ import { Router } from '@angular/router';
 import { HttpService } from '../api/http.service';
 import { User } from '../models/user';
 import { LocalStorageService } from './local-storage-service.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-
+  jwtHelper = new JwtHelperService();
   constructor(
-    private readonly httpService: HttpService,
-    private readonly localStorageService: LocalStorageService,
-    private readonly router: Router
+    private  httpService: HttpService,
+    private  localStorageService: LocalStorageService,
+    private  router: Router,
     ) { }
 
   public login(email: string, password:string) {
@@ -23,12 +24,12 @@ export class AuthenticationService {
         return;
       }
 
-      this.localStorageService.put('token', data.accessToken);
+      this.localStorageService.put('token', data.token);
         this.localStorageService.put(
-          'info',
-          JSON.stringify(this.getUserInfo(data))
+          'email',
+          this.getUserInfo(data),
         );
-        this.router.navigate(['']);
+        this.router.navigate(['dashboard']);
     });
 
   }
@@ -44,13 +45,9 @@ export class AuthenticationService {
 
   public isAuthenticated(): boolean{
     const token = this.localStorageService.get('token');
+    console.warn(token)
 
-    if(token){
-      const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-      return (Math.floor((new Date).getTime() / 1000)) >= expiry;
-    }
-
-    return false;
+    return !this.jwtHelper.isTokenExpired(token);
 
   }
 
@@ -60,16 +57,12 @@ export class AuthenticationService {
    this.localStorageService.put('token', '');
   }
 
-  public getInfo(): User {
-    return JSON.parse(this.localStorageService.get('info')!);
+  public getInfo(): string {
+    return this.localStorageService.get('email');
   }
 
-  private getUserInfo(data: any): User {
-    const userInfo: User = {
-      email: data.email,
-    };
-
-    return userInfo;
+  private getUserInfo(data: any): string {
+    return data.user.email;
   }
 
   //TODO Update service

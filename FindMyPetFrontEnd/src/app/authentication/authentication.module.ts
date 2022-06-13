@@ -9,6 +9,8 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -23,9 +25,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AuthenticationRoutingModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+
 
   ],
+
 
   bootstrap: [AuthenticationModule],
 })

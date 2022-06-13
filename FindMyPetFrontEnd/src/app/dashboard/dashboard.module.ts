@@ -17,6 +17,8 @@ import { MatCardModule } from '@angular/material/card';
 import { PetListEntryComponent } from './pet-map/pet-list-entry/pet-list-entry.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatFormFieldModule } from '@angular/material/form-field';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import {  MatFormFieldModule } from '@angular/material/form-field';
     TipsComponent,
     PetFormComponent,
     PetListEntryComponent,
-    PetMapComponent
+    PetMapComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -39,8 +42,10 @@ import {  MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+
   ],
+
   bootstrap: [DashboardModule]
 })
 export class DashboardModule { }

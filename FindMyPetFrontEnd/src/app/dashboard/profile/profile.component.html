@@ -1,0 +1,14 @@
+<p>profile works!</p>
+
+  <div *ngFor="let form of userFormList" >
+  <mat-card class="pet-list-entry">
+    <mat-card-title-group>
+      <mat-card-title>Nume: {{form.name}}</mat-card-title>
+      <mat-card-subtitle>Rasa: {{form.breed}}</mat-card-subtitle>
+      <img mat-card-lg-image src="{{'data:image/jpg;base64,' + form.pic}}" >
+    </mat-card-title-group>
+    <mat-card-content>
+      Pierdut de: {{form.username}} {{form.emailContact}}
+    </mat-card-content>
+  </mat-card>
+  </div>

@@ -1,11 +1,13 @@
 import { ResourceLoader } from '@angular/compiler';
-import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, Sanitizer, ViewChild } from '@angular/core';
 import { Form } from 'src/app/@core/models/form';
 
 import { Loader } from '@googlemaps/js-api-loader';
 import { FormCollectionService } from 'src/app/@core/services/form-collection.service';
 import { styles } from './map-styles';
 import { Coordinates } from 'src/app/@core/models/coordinates';
+import { AuthenticationService } from 'src/app/@core/services/authentication.service';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 
 
@@ -20,6 +22,8 @@ export class PetMapComponent implements OnInit {
   lostFormList: Form[] = [];
   foundFormList: Form[] = [];
 
+  safePicUrlFromFormList: SafeUrl[] = [];
+
   showLostFormList: boolean = false;
   showFoundFormList: boolean = false;
   showSelectedFormFromMark: boolean = false;
@@ -28,6 +32,8 @@ export class PetMapComponent implements OnInit {
   lostGoogleMarkerList: google.maps.Marker [] = [];
   foundGoogleMarkerList: google.maps.Marker [] = [];
 
+  showForm: boolean=false;
+
   form!: Form;
 
   selectedFormFromMark!: Form;
@@ -35,14 +41,21 @@ export class PetMapComponent implements OnInit {
   // infoWindow:google.maps.InfoWindow;
 
 
-
   private map!: google.maps.Map
 
   coordinatesFromMapClick: Coordinates = new Coordinates;
 
-  constructor(private formCollectionService:FormCollectionService) {}
+
+  constructor(private formCollectionService:FormCollectionService,
+     private authService: AuthenticationService,
+     private sanitizer: DomSanitizer
+
+     ) {
+  }
 
   ngOnInit(): void {
+
+
 
     //load the google map on the browser
 
@@ -85,6 +98,7 @@ export class PetMapComponent implements OnInit {
 
             this.googleMarkerList.push(mark);
             this.lostGoogleMarkerList.push(mark);
+            this.safePicUrlFromFormList.push(this.sanitizer.bypassSecurityTrustUrl(x.pic))
             this.lostFormList.push(x);
 
           }
@@ -106,10 +120,13 @@ export class PetMapComponent implements OnInit {
 
             this.googleMarkerList.push(mark);
             this.foundGoogleMarkerList.push(mark);
+            this.safePicUrlFromFormList.push(this.sanitizer.bypassSecurityTrustUrl(x.pic))
             this.foundFormList.push(x);
 
 
           }
+
+
         })
 
 
@@ -207,6 +224,13 @@ export class PetMapComponent implements OnInit {
 
     })
 
+  //Show Form if user is logged in
+  if(!this.authService.isAuthenticated()){
+    this.showForm = false;
+  }
+  else{
+    this.showForm = true;
+  }
 
 
 }
@@ -274,8 +298,11 @@ public addMarkerAndFormCardListener(googleMarker: google.maps.Marker, form: Form
   })
 }
 
-public onFormButtonClick(form: Form){
-
+public showPic(form: Form) : SafeUrl{
+  const foundForm = this.formList.find(x => x.pic == form.pic);
+  var safePic = this.sanitizer.bypassSecurityTrustResourceUrl(foundForm.pic);
+  console.log(safePic);
+  return safePic;
 }
 
 
