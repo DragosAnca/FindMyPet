@@ -31,10 +31,27 @@
   </mat-card>
 </div>
 </div>
+<div *ngIf="showSelectedFormFromMark"><mat-card class="pet-list-entry">
+  <mat-card-title-group>
+    <mat-card-title>Nume: {{selectedFormFromMark.name}}</mat-card-title>
+    <mat-card-subtitle>Rasa: {{selectedFormFromMark.breed}}</mat-card-subtitle>
+    <img mat-card-lg-image src="{{'data:image/jpg;base64,' + selectedFormFromMark.pic}}" >
+  </mat-card-title-group>
+  <mat-card-content>
+    {{selectedFormFromMark.lostOrFoundPet}} by: {{selectedFormFromMark.username}} {{selectedFormFromMark.emailContact}}
+  </mat-card-content>
+</mat-card></div>
 <div>
 <button (click)="hideFoundMarkersFromMarkerList()">Lost pets markers</button>
 <button (click)="hideLostMarkersFromMarkerList()">Found pets markers</button>
 </div>
+
+<input
+      id="pac-input"
+      class="controls"
+      type="text"
+      placeholder="Search Box"
+    />
 <div class="full" id="map">
 
 

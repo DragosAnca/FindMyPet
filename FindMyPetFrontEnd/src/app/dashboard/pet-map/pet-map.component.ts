@@ -22,6 +22,7 @@ export class PetMapComponent implements OnInit {
 
   showLostFormList: boolean = false;
   showFoundFormList: boolean = false;
+  showSelectedFormFromMark: boolean = false;
 
   googleMarkerList: google.maps.Marker [] = [];
   lostGoogleMarkerList: google.maps.Marker [] = [];
@@ -29,7 +30,9 @@ export class PetMapComponent implements OnInit {
 
   form!: Form;
 
-  infoWindow:google.maps.InfoWindow;
+  selectedFormFromMark!: Form;
+
+  // infoWindow:google.maps.InfoWindow;
 
 
 
@@ -44,7 +47,8 @@ export class PetMapComponent implements OnInit {
     //load the google map on the browser
 
     let loader = new Loader({
-      apiKey: 'AIzaSyDK_j5J4mn0O15yftYyrA3f0qAVVwdKhzs'
+      apiKey: 'AIzaSyDK_j5J4mn0O15yftYyrA3f0qAVVwdKhzs',
+      libraries: ['places']
     });
 
     loader.load().then(() => {
@@ -77,11 +81,7 @@ export class PetMapComponent implements OnInit {
 
             })
             // Add a click listener for each marker, and set up the info window.
-            mark.addListener("click", () => {
-              infoWindow.close();
-              infoWindow.setContent(x.name);
-              infoWindow.open(mark.getMap(), mark);
-            });
+            this.addMarkerAndFormCardListener(mark, x, infoWindow);
 
             this.googleMarkerList.push(mark);
             this.lostGoogleMarkerList.push(mark);
@@ -96,15 +96,18 @@ export class PetMapComponent implements OnInit {
               map: this.map
             })
             // Add a click listener for each marker, and set up the info window.
-            mark.addListener("click", () => {
-              infoWindow.close();
-              infoWindow.setContent(x.name);
-              infoWindow.open(mark.getMap(), mark);
-            });
+            // mark.addListener("click", () => {
+
+            //   infoWindow.close();
+            //   infoWindow.setContent(x.name);
+            //   infoWindow.open(mark.getMap(), mark);
+            // });
+            this.addMarkerAndFormCardListener(mark, x, infoWindow);
 
             this.googleMarkerList.push(mark);
             this.foundGoogleMarkerList.push(mark);
             this.foundFormList.push(x);
+
 
           }
         })
@@ -152,6 +155,55 @@ export class PetMapComponent implements OnInit {
         infoWindow.open(this.map);
 
       });
+      //Creating the Search Box
+      const input = document.getElementById("pac-input") as HTMLInputElement;
+      const searchBox = new google.maps.places.SearchBox(input);
+
+      this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+      // Bias the SearchBox results towards current map's viewport.
+      this.map.addListener("bounds_changed", () => {
+        searchBox.setBounds(this.map.getBounds() as google.maps.LatLngBounds);
+        });
+      // Listen for the event fired when the user selects a prediction and retrieve
+      // more details for that place.
+      searchBox.addListener("places_changed", () => {
+        const places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+          return;
+        }
+
+
+        // For each place, get the icon, name and location.
+        const bounds = new google.maps.LatLngBounds();
+
+        places.forEach((place) => {
+          if (!place.geometry || !place.geometry.location) {
+            console.log("Returned place contains no geometry");
+            return;
+          }
+
+          const icon = {
+            url: place.icon as string,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25),
+          };
+
+          if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+        this.map.fitBounds(bounds);
+      });
+
+
+
 
     })
 
@@ -180,6 +232,7 @@ public hideLostMarkersFromMarkerList(){
   this.foundGoogleMarkerList.forEach(x =>{
     x.setMap(this.map);
   })
+  this.showSelectedFormFromMark = false;
   this.showLostFormList=false;
   this.showFoundFormList=true;
 }
@@ -191,8 +244,38 @@ public hideFoundMarkersFromMarkerList(){
   this.lostGoogleMarkerList.forEach(x =>{
     x.setMap(this.map);
   })
+  this.showSelectedFormFromMark = false;
   this.showFoundFormList=false;
   this.showLostFormList=true;
+
+}
+
+public onFormCardClick(form: Form){
+  this.foundGoogleMarkerList.forEach(x =>{
+    x.setMap(null);
+  })
+  this.lostGoogleMarkerList.forEach(x =>{
+    x.setMap(null);
+  })
+}
+
+public addMarkerAndFormCardListener(googleMarker: google.maps.Marker, form: Form, infoWindow:google.maps.InfoWindow){
+
+    googleMarker.addListener("click", () => {
+      infoWindow.close();
+      infoWindow.setContent(form.name);
+      infoWindow.open(googleMarker.getMap(), googleMarker);
+
+      this.showFoundFormList = false;
+      this.showLostFormList = false;
+      this.showSelectedFormFromMark = true;
+
+      this.selectedFormFromMark = form;
+  })
+}
+
+public onFormButtonClick(form: Form){
+
 }
 
 
