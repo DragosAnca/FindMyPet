@@ -21,4 +21,9 @@ export class FormCollectionService {
   public getByEmail(email: string): Observable<Form[]>{
     return this.httpService.get(`form/email/${email}`)
   }
+
+  public createForm(form: Form){
+    console.log("create front service reached")
+    this.httpService.post(`form/createform`, form).subscribe(data => console.log(data))
+  }
 }
