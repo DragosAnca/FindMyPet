@@ -79,6 +79,7 @@ export class PetMapComponent implements OnInit {
 
 
 
+
       this.formCollectionService.getAll().subscribe(data => {
 
         this.formList = data
@@ -269,6 +270,8 @@ public hideFoundMarkersFromMarkerList(){
   this.lostGoogleMarkerList.forEach(x =>{
     x.setMap(this.map);
   })
+
+  console.warn("hide marks works")
   this.showSelectedFormFromMark = false;
   this.showFoundFormList=false;
   this.showLostFormList=true;

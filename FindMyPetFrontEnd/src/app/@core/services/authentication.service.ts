@@ -22,7 +22,7 @@ export class AuthenticationService {
 
     return this.httpService.post(`user/login`, {username, password}).subscribe((data) =>{
       if (data == "Username or password incorrect"){
-        return;
+        console.warn("Username or password incorrect");
       }
 
       this.localStorageService.put('token', data.token);

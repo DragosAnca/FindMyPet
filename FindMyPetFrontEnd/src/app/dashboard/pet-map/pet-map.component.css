@@ -45,3 +45,14 @@
 #pac-input:focus {
   border-color: #4d90fe;
 }
+
+
+.map-form-container{
+  display: flex;
+  justify-content: space-around;
+}
+
+.pet-data{
+  display: flex;
+  width: 380px;
+}
