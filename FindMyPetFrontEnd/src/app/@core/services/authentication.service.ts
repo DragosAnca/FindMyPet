@@ -37,9 +37,10 @@ export class AuthenticationService {
 
   public register(user: User){
     this.httpService.post(`user/register`, user).subscribe((data) =>{
-      if (data == "Email already registered"){
-        return;
+      if (data as string == "Email already registered"){
+        this.router.navigate(['auth/register'])
       }
+      this.router.navigate(['auth/login']);
     })
 
   }

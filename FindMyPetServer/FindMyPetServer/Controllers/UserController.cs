@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EmailService;
-using FindMyPetServer.DTOs;
 using FindMyPetServer.Interfaces;
+using FindMyPetServer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Http;

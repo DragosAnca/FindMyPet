@@ -1,6 +1,6 @@
 .full{
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 460px;
 }
 .pac-card {
   background-color: #fff;
@@ -52,7 +52,3 @@
   justify-content: space-around;
 }
 
-.pet-data{
-  display: flex;
-  width: 380px;
-}

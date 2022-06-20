@@ -1,51 +1,86 @@
 <div class="pet-data-form">
   <form [formGroup]="petForm" (ngSubmit)="onSubmit()">
 
-    <label for="lostOrFoundPet"> Lost or found pet:</label>
-    <input id="lostOrFoundPet" type ="text" formControlName="lostOrFoundPet">
 
-    <label for="species"> species:</label>
-    <input id="species" type ="text" formControlName="species">
-
-    <label for="breed"> breed:</label>
-    <input id="breed" type ="text" formControlName="breed">
-
-    <label for="name"> name:</label>
-    <input id="name" type ="text" formControlName="name">
-
-    <label for="accessories"> accessories:</label>
-    <input id="accessories" type ="text" formControlName="accessories">
-
-    <label for="color"> color:</label>
-    <input id="color" type ="text" formControlName="color">
-
-    <label for="sized"> sized:</label>
-    <input id="sized" type ="text" formControlName="sized">
-
-    <label for="chip"> chipt:</label>
-    <input id="chip" type ="text" formControlName="chip">
-
-    <label for="marks"> marks:</label>
-    <input id="marks" type ="text" formControlName="marks">
-
-    <label for="pic"> pic:</label>
-    <input id="pic" type="file" (change)="onChange($event)">
-
-    <label for="location"> location</label>
-
-
-    <label for="emailContact"> emailContact</label>
-    <input id="emailContact" type ="text" formControlName="emailContact">
-
-    <label for="phone"> phone:</label>
-    <input id="phone" type ="text" formControlName="phone">
+    <mat-form-field appearance="standard">
+    <label for="lostOrFoundPet"></label>
+    <input matInput id="lostOrFoundPet" type ="text" formControlName="lostOrFoundPet" placeholder="Lost or found pet">
+    </mat-form-field>
 
 
 
-    <p>Complete the form to enable button.</p>
+    <mat-form-field appearance="standard">
+    <label for="species"></label>
+    <input matInput id="species" type ="text" formControlName="species" placeholder="Species">
+    </mat-form-field>
 
 
-    <button type="submit"  >Submit</button>
+
+    <mat-form-field appearance="standard">
+    <label for="breed"></label>
+    <input matInput id="breed" type ="text" formControlName="breed" placeholder="breed">
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="standard">
+    <label for="name"></label>
+    <input matInput id="name" type ="text" formControlName="name" placeholder="name">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="standard">
+    <label for="accessories"></label>
+    <input matInput id="accessories" type ="text" formControlName="accessories" placeholder="accessories">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="standard">
+    <label for="color"></label>
+    <input matInput id="color" type ="text" formControlName="color" placeholder="color">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+    <label for="sized"></label>
+    <input matInput id="sized" type ="text" formControlName="sized" placeholder="sized">
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="standard">
+    <label for="chip"></label>
+    <input matInput id="chip" type ="text" formControlName="chip" placeholder="chip">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="standard">
+    <label for="marks"></label>
+    <input matInput id="marks" type ="text" formControlName="marks" placeholder="marks">
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="standard">
+    <label for="emailContact"></label>
+    <input matInput id="emailContact" type ="email" formControlName="emailContact" placeholder="Email contact">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="standard">
+    <label for="phone"></label>
+    <input matInput id="phone" type ="tel" formControlName="phone" placeholder="phone">
+    </mat-form-field>
+
+
+    <div class="pic">
+      <label for="pic" class="pic-label">Choose a picture
+      </label>
+      <input id="pic" type="file" (change)="onChange($event)">
+
+      </div>
+
+      <button type="submit" class="submit-button" >Submit</button>
+
   </form>
 
 </div>

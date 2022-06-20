@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using FindMyPetServer.DTOs;
+using FindMyPetServer.Models;
 
 namespace FindMyPetServer.Interfaces
 {

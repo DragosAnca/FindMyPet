@@ -1,6 +1,6 @@
 ﻿using FindMyPetServer.Interfaces;
 
-namespace FindMyPetServer.DTOs
+namespace FindMyPetServer.Models
 {
     public class FindMyPetDatabaseSettings : IDatabaseSettings
     {
@@ -11,7 +11,7 @@ namespace FindMyPetServer.DTOs
         public string FormCollectionName { get; set; }
         public string UserCollectionName { get; set; }
 
-        // public string Key { get; set; }
+        
 
     }
 }

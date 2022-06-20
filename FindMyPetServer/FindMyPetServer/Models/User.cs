@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace FindMyPetServer.DTOs
+namespace FindMyPetServer.Models
 {
     public class User : IComparable
     {

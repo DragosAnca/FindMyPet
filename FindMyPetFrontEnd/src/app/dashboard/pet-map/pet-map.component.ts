@@ -7,7 +7,6 @@ import { FormCollectionService } from 'src/app/@core/services/form-collection.se
 import { styles } from './map-styles';
 import { Coordinates } from 'src/app/@core/models/coordinates';
 import { AuthenticationService } from 'src/app/@core/services/authentication.service';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 
 

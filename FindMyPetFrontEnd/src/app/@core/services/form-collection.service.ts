@@ -14,21 +14,20 @@ export class FormCollectionService {
     private router: Router,
     ) { }
 
+    public getByUsername(username: string): Observable<Form[]>{
+      return this.httpService.get(`form/username/${username}`)
+    }
+
+    public createForm(form: Form){
+      this.httpService.post(`form/createform`, form).subscribe(data => console.log(data))
+      this.router.navigate(['dashboard/profile']);
+    }
+
   public getAll(): Observable<Form[]>{
     return this.httpService.get(`form`);
   }
 
   public getById(id: string): Observable<Form>{
     return this.httpService.get(`form/${id}`)
-  }
-
-  public getByUsername(username: string): Observable<Form[]>{
-    return this.httpService.get(`form/username/${username}`)
-  }
-
-  public createForm(form: Form){
-    console.log("create front service reached")
-    this.httpService.post(`form/createform`, form).subscribe(data => console.log(data))
-    this.router.navigate(['dashboard/profile']);
   }
 }

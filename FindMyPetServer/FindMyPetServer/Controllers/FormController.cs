@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EmailService;
-using FindMyPetServer.DTOs;
 using FindMyPetServer.Interfaces;
+using FindMyPetServer.Models;
 using FindMyPetServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

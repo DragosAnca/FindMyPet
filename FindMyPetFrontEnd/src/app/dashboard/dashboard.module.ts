@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  MatFormFieldModule } from '@angular/material/form-field';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { ProfileComponent } from './profile/profile.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatCardModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule
 
   ],
 

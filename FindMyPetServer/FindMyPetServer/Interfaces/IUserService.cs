@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using FindMyPetServer.DTOs;
+using FindMyPetServer.Models;
 
 namespace FindMyPetServer.Interfaces
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FindMyPetServer.DTOs
+namespace FindMyPetServer.Models.DTOs
 {
     public class ForgotPasswordDto
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using FindMyPetServer.DTOs;
 using FindMyPetServer.Interfaces;
+using FindMyPetServer.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
