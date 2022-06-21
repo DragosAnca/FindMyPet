@@ -2,10 +2,10 @@
   display: flex;
   justify-content: space-around;
   width: 500px;
-  border: 1px solid rgb(12, 117, 221);
+  border: 1px solid #a08679;
   border-radius: 10px;
   box-sizing: border-box;
-  box-shadow: 0 0 20px 0px rgb(12, 117, 221);
+  box-shadow: 0 0 20px 0px #a08679;
 
 }
 
@@ -24,7 +24,7 @@
   cursor: pointer;
   color: black;
   background-color: transparent;
-  border: 1px solid rgb(12, 117, 221);
+  border: 1px solid #a08679;
   margin-top: 15px;
   margin-bottom: 15px;
   display: block;
@@ -34,12 +34,12 @@
 
   outline: none;
   border-radius: 30px;
-  transition: 0.3 ease-in-out;
  }
 
  .submit-button:hover{
-  box-shadow: 0 0 10px 0px rgb(12, 117, 221);
-  background-color: rgb(12, 117, 221);
+  color: #fff;
+  box-shadow: 0 0 10px 0px #a08679;
+  background-color: #a08679;
  }
 
  input[type="file"] {
@@ -50,7 +50,7 @@
   cursor: pointer;
   color: black;
   background-color: transparent;
-  border: 1px solid rgb(12, 117, 221);
+  border: 1px solid #a08679;
   margin-top: 15px;
   margin-bottom: 15px;
   display: block;
@@ -58,13 +58,12 @@
   margin-right: 75px;
   outline: none;
   border-radius: 30px;
-  transition: 0.3 ease-in-out;
 }
 
 .pic-label:hover{
-  transition: 0.3 ease-in-out;
-  box-shadow: 0 0 10px 0px rgb(12, 117, 221);
-  background-color: rgb(12, 117, 221);
+  color: #fff;
+  box-shadow: 0 0 10px 0px #a08679;
+  background-color: #a08679;
  }
 
 

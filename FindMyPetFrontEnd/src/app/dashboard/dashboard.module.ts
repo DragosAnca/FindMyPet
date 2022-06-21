@@ -11,7 +11,7 @@ import { TipsComponent } from './tips/tips.component';
 import { PetFormComponent } from './pet-map/pet-form/pet-form.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { PetListEntryComponent } from './pet-map/pet-list-entry/pet-list-entry.component';
@@ -20,6 +20,7 @@ import {  MatFormFieldModule } from '@angular/material/form-field';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { ProfileComponent } from './profile/profile.component';
 import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -33,18 +34,20 @@ import { MatInputModule } from '@angular/material/input';
     PetFormComponent,
     PetListEntryComponent,
     PetMapComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     MatToolbarModule,
-    MatIconModule,
     FormsModule,
     MatCardModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule
 
   ],
 

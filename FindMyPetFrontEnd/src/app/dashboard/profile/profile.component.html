@@ -1,14 +1,40 @@
-<p>profile works!</p>
 
+<form [formGroup]="deleteForm" (ngSubmit)="onRemoveFormButtonClick">
+
+  <mat-form-field class="example-form-field" appearance="fill">
+    <mat-label>Pet's name</mat-label>
+    <input matInput class="input-field"
+     formControlName="deleteName" >
+  </mat-form-field>
+  <!-- <input
+          class="input-field"
+          placeholder="Pet's name"
+           formControlName="deleteName"
+        /> -->
+
+  <button  mat-button color="warn" class="submit-btn" (click)="onRemoveFormButtonClick()">Delete Announcement</button>
+
+
+</form>
   <div *ngFor="let form of userFormList" >
-  <mat-card class="pet-list-entry">
-    <mat-card-title-group>
-      <mat-card-title>Nume: {{form.name}}</mat-card-title>
-      <mat-card-subtitle>Rasa: {{form.breed}}</mat-card-subtitle>
-      <img mat-card-lg-image src="{{form.pic}}" >
-    </mat-card-title-group>
-    <mat-card-content>
-      Pierdut de: {{form.username}} {{form.emailContact}}
-    </mat-card-content>
-  </mat-card>
+    <mat-card class="pet-list-entry">
+      <mat-card-title-group>
+        <mat-card-title>Nume: {{form.name}}</mat-card-title>
+        <mat-card-subtitle>Species: {{form.species}}</mat-card-subtitle>
+        <mat-card-subtitle>Breed: {{form.breed}}</mat-card-subtitle>
+        <mat-card-subtitle>Accessories: {{form.accessories}}</mat-card-subtitle>
+        <mat-card-subtitle>Fur color: {{form.color}}</mat-card-subtitle>
+        <mat-card-subtitle>Sized: {{form.sized}}</mat-card-subtitle>
+        <mat-card-subtitle>Marks: {{form.marks}}</mat-card-subtitle>
+        <mat-card-subtitle>Chip: {{form.chip}}</mat-card-subtitle>
+        <mat-card-subtitle>Email pet owner: {{form.emailContact}}</mat-card-subtitle>
+        <mat-card-subtitle>Phone pet owner: {{form.phone}}</mat-card-subtitle>
+
+        <img mat-card-xl-image src="{{form.pic}}">
+
+      </mat-card-title-group>
+      <mat-card-subtitle>
+        Gasit de: {{form.username}}
+      </mat-card-subtitle>
+    </mat-card>
   </div>

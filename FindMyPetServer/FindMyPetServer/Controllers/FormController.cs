@@ -30,7 +30,7 @@ namespace FindMyPetServer.Controllers
             await formService.GetAsync();
 
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<FormModel>> GetById(string id)
         {
             var form = await formService.GetAsync(id);
@@ -57,7 +57,7 @@ namespace FindMyPetServer.Controllers
 
         }
 
-        [HttpPut("{id:length(24)}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, FormModel updatedForm)
         {
             var form = await formService.GetAsync(id);
@@ -73,7 +73,7 @@ namespace FindMyPetServer.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             var form = await formService.GetAsync(id);
@@ -85,7 +85,7 @@ namespace FindMyPetServer.Controllers
 
             await formService.RemoveAsync(id);
 
-            return NoContent();
+            return Ok();
         }
     }
 }

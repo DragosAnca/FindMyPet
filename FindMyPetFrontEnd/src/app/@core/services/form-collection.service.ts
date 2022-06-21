@@ -28,6 +28,16 @@ export class FormCollectionService {
   }
 
   public getById(id: string): Observable<Form>{
-    return this.httpService.get(`form/${id}`)
+    return this.httpService.get(`form/${id}`);
+  }
+
+  public deleteById(id: string): Observable<Form>{
+    console.log("delete front end reached service");
+    return this.httpService.delete(`form/delete/${id}`);
+
   }
 }
+
+
+
+

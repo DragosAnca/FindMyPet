@@ -30,7 +30,7 @@ export class AuthenticationService {
           'username',
           this.getUserInfo(data),
         );
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard/home']);
     });
 
   }
@@ -57,6 +57,8 @@ export class AuthenticationService {
     const token = this.localStorageService.get('token');
     if (token === null) return;
    this.localStorageService.put('token', '');
+   this.localStorageService.put('username', '');
+   this.router.navigate(['auth/login']);
   }
 
   public getInfo(): string {

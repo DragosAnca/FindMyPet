@@ -37,8 +37,6 @@ export class PetMapComponent implements OnInit {
 
   selectedFormFromMark!: Form;
 
-  // infoWindow:google.maps.InfoWindow;
-
 
   private map!: google.maps.Map
 
@@ -108,12 +106,7 @@ export class PetMapComponent implements OnInit {
               map: this.map
             })
             // Add a click listener for each marker, and set up the info window.
-            // mark.addListener("click", () => {
 
-            //   infoWindow.close();
-            //   infoWindow.setContent(x.name);
-            //   infoWindow.open(mark.getMap(), mark);
-            // });
             this.addMarkerAndFormCardListener(mark, x, infoWindow);
 
             this.googleMarkerList.push(mark);
@@ -235,18 +228,6 @@ export class PetMapComponent implements OnInit {
 
 
 }
-
-
-// public createMarkerList(){
-
-//   this.markerList.forEach(location => {
-//     var marker = new google.maps.Marker({
-//       position: new google.maps.LatLng(location.lat, location.lng),
-//       map: this.map
-//     });
-//     console.log(marker)
-//   })
-// }
 
 
 
