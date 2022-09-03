@@ -1,61 +1,91 @@
-<p>pet-map works!</p>
-<app-pet-form [coordinates]="coordinatesFromMapClick"></app-pet-form>
+<div class="map-form-container">
 
+  <app-pet-form [coordinates]="coordinatesFromMapClick" *ngIf="showForm"></app-pet-form>
+
+
+  <div class="map-container">
+    <div class="button-container">
+      <button mat-button color="primary" (click)="hideFoundMarkersFromMarkerList()">Lost pets markers</button>
+      <button mat-button color="primary" (click)="hideLostMarkersFromMarkerList()">Found pets markers</button>
+    </div>
+
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+    <div class="full" id="map"></div>
+  </div>
+
+</div>
 
 
 <div *ngIf="showLostFormList">
-  <div *ngFor="let form of lostFormList" >
-  <mat-card class="pet-list-entry">
-    <mat-card-title-group>
-      <mat-card-title>Nume: {{form.name}}</mat-card-title>
-      <mat-card-subtitle>Rasa: {{form.breed}}</mat-card-subtitle>
-      <img mat-card-lg-image src="{{'data:image/jpg;base64,' + form.pic}}" >
-    </mat-card-title-group>
-    <mat-card-content>
-      Pierdut de: {{form.username}} {{form.emailContact}}
-    </mat-card-content>
-  </mat-card>
-</div>
+  <div *ngFor="let form of lostFormList">
+    <mat-card class="pet-list-entry">
+      <mat-card-title-group>
+        <mat-card-title>Nume: {{form.name}}</mat-card-title>
+        <mat-card-subtitle>Species: {{form.species}}</mat-card-subtitle>
+        <mat-card-subtitle>Breed: {{form.breed}}</mat-card-subtitle>
+        <mat-card-subtitle>Accessories: {{form.accessories}}</mat-card-subtitle>
+        <mat-card-subtitle>Fur color: {{form.color}}</mat-card-subtitle>
+        <mat-card-subtitle>Sized: {{form.sized}}</mat-card-subtitle>
+        <mat-card-subtitle>Marks: {{form.marks}}</mat-card-subtitle>
+        <mat-card-subtitle>Chip: {{form.chip}}</mat-card-subtitle>
+        <mat-card-subtitle>Email pet owner: {{form.emailContact}}</mat-card-subtitle>
+        <mat-card-subtitle>Phone pet owner{{form.phone}}</mat-card-subtitle>
+
+        <img mat-card-xl-image src="{{form.pic}}">
+
+      </mat-card-title-group>
+      <mat-card-subtitle>
+        Gasit de: {{form.username}}
+      </mat-card-subtitle>
+    </mat-card>
+  </div>
 </div>
 <div *ngIf="showFoundFormList">
-<div *ngFor="let form of foundFormList">
+  <div *ngFor="let form of foundFormList">
+    <mat-card class="pet-list-entry">
+      <mat-card-title-group>
+        <mat-card-title>Nume: {{form.name}}</mat-card-title>
+        <mat-card-subtitle>Species: {{form.species}}</mat-card-subtitle>
+        <mat-card-subtitle>Breed: {{form.breed}}</mat-card-subtitle>
+        <mat-card-subtitle>Accessories: {{form.accessories}}</mat-card-subtitle>
+        <mat-card-subtitle>Fur color: {{form.color}}</mat-card-subtitle>
+        <mat-card-subtitle>Sized: {{form.sized}}</mat-card-subtitle>
+        <mat-card-subtitle>Marks: {{form.marks}}</mat-card-subtitle>
+        <mat-card-subtitle>Chip: {{form.chip}}</mat-card-subtitle>
+        <mat-card-subtitle>Email pet owner: {{form.emailContact}}</mat-card-subtitle>
+        <mat-card-subtitle>Phone pet owner{{form.phone}}</mat-card-subtitle>
+
+        <img mat-card-xl-image src="{{form.pic}}">
+
+      </mat-card-title-group>
+      <mat-card-subtitle>
+        Gasit de: {{form.username}}
+      </mat-card-subtitle>
+    </mat-card>
+  </div>
+</div>
+<div *ngIf="showSelectedFormFromMark">
   <mat-card class="pet-list-entry">
     <mat-card-title-group>
-      <mat-card-title>Nume: {{form.name}}</mat-card-title>
-      <mat-card-subtitle>Rasa: {{form.breed}}</mat-card-subtitle>
-      <img mat-card-lg-image src="{{'data:image/jpg;base64,' + form.pic}}" >
+      <mat-card-title>Nume: {{selectedFormFromMark.name}}</mat-card-title>
+      <mat-card-subtitle>Species: {{selectedFormFromMark.species}}</mat-card-subtitle>
+      <mat-card-subtitle>Breed: {{selectedFormFromMark.breed}}</mat-card-subtitle>
+      <mat-card-subtitle>Accessories: {{selectedFormFromMark.accessories}}</mat-card-subtitle>
+      <mat-card-subtitle>Fur color: {{selectedFormFromMark.color}}</mat-card-subtitle>
+      <mat-card-subtitle>Sized: {{selectedFormFromMark.sized}}</mat-card-subtitle>
+      <mat-card-subtitle>Marks: {{selectedFormFromMark.marks}}</mat-card-subtitle>
+      <mat-card-subtitle>Chip: {{selectedFormFromMark.chip}}</mat-card-subtitle>
+      <mat-card-subtitle>Email pet owner: {{selectedFormFromMark.emailContact}}</mat-card-subtitle>
+      <mat-card-subtitle>Phone pet owner{{selectedFormFromMark.phone}}</mat-card-subtitle>
+
+      <img mat-card-xl-image src="{{selectedFormFromMark.pic}}">
+
     </mat-card-title-group>
-    <mat-card-content>
-      Gasit de: {{form.username}} {{form.emailContact}}
-    </mat-card-content>
+    <mat-card-subtitle>
+      Gasit de: {{selectedFormFromMark.username}}
+    </mat-card-subtitle>
   </mat-card>
 </div>
-</div>
-<div *ngIf="showSelectedFormFromMark"><mat-card class="pet-list-entry">
-  <mat-card-title-group>
-    <mat-card-title>Nume: {{selectedFormFromMark.name}}</mat-card-title>
-    <mat-card-subtitle>Rasa: {{selectedFormFromMark.breed}}</mat-card-subtitle>
-    <img mat-card-lg-image src="{{'data:image/jpg;base64,' + selectedFormFromMark.pic}}" >
-  </mat-card-title-group>
-  <mat-card-content>
-    {{selectedFormFromMark.lostOrFoundPet}} by: {{selectedFormFromMark.username}} {{selectedFormFromMark.emailContact}}
-  </mat-card-content>
-</mat-card></div>
-<div>
-<button (click)="hideFoundMarkersFromMarkerList()">Lost pets markers</button>
-<button (click)="hideLostMarkersFromMarkerList()">Found pets markers</button>
-</div>
 
-<input
-      id="pac-input"
-      class="controls"
-      type="text"
-      placeholder="Search Box"
-    />
-<div class="full" id="map">
-
-
-
-
-
-
+<!-- <button (click)="hideFoundMarkersFromMarkerList()">Lost pets markers</button>
+  <button (click)="hideLostMarkersFromMarkerList()">Found pets markers</button> -->

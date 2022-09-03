@@ -1,6 +1,6 @@
 .full{
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 460px;
 }
 .pac-card {
   background-color: #fff;
@@ -44,4 +44,16 @@
 
 #pac-input:focus {
   border-color: #4d90fe;
+}
+
+
+.map-form-container{
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.pet-list-entry{
+  margin: 0.5rem;
 }

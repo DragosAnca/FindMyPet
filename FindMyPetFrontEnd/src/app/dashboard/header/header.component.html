@@ -1,19 +1,17 @@
-<mat-toolbar color="primary">
-    <mat-icon>local_fire_department</mat-icon>
-    <span>FindMyPet</span>
-  </mat-toolbar>
+<header>
+  <nav class="header-container">
 
+      <a class="logo" routerLink="/dashboard/petmap"><img src="assets/logosmall.png" /></a>
+      <div class="links-container">
+        <a routerLink="/dashboard/home">Home</a>
+        <a routerLink="/dashboard/petmap">Pet Map</a>
+        <a routerLink="/dashboard/tips">Tips to find your pet</a>
+      </div>
+      <div class="login-container">
+        <a routerLink="/dashboard/profile">Profile</a>
+        <a  *ngIf="this.authService.isAuthenticated()"
+            (click)="onLogoutButtonClick()" class="logout-button">Logout</a>
+      </div>
 
-
-
-
-
-<p>header works!</p>
-<a routerLink="/dashboard/home">
-    Home</a>
-<a routerLink="/dashboard/petmap">
-    PetMap</a>
-<a routerLink="/dashboard/tips">
-    Tips to find your pet!</a>
-<a routerLink="/dashboard/about">
-    About</a>
+  </nav>
+</header>

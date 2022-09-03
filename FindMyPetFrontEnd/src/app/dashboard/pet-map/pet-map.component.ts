@@ -1,11 +1,12 @@
 import { ResourceLoader } from '@angular/compiler';
-import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, Sanitizer, ViewChild } from '@angular/core';
 import { Form } from 'src/app/@core/models/form';
 
 import { Loader } from '@googlemaps/js-api-loader';
 import { FormCollectionService } from 'src/app/@core/services/form-collection.service';
 import { styles } from './map-styles';
 import { Coordinates } from 'src/app/@core/models/coordinates';
+import { AuthenticationService } from 'src/app/@core/services/authentication.service';
 
 
 
@@ -20,6 +21,8 @@ export class PetMapComponent implements OnInit {
   lostFormList: Form[] = [];
   foundFormList: Form[] = [];
 
+
+
   showLostFormList: boolean = false;
   showFoundFormList: boolean = false;
   showSelectedFormFromMark: boolean = false;
@@ -28,21 +31,26 @@ export class PetMapComponent implements OnInit {
   lostGoogleMarkerList: google.maps.Marker [] = [];
   foundGoogleMarkerList: google.maps.Marker [] = [];
 
+  showForm: boolean=false;
+
   form!: Form;
 
   selectedFormFromMark!: Form;
-
-  // infoWindow:google.maps.InfoWindow;
-
 
 
   private map!: google.maps.Map
 
   coordinatesFromMapClick: Coordinates = new Coordinates;
 
-  constructor(private formCollectionService:FormCollectionService) {}
+
+  constructor(private formCollectionService:FormCollectionService,
+     private authService: AuthenticationService,
+     ) {
+  }
 
   ngOnInit(): void {
+
+
 
     //load the google map on the browser
 
@@ -68,6 +76,7 @@ export class PetMapComponent implements OnInit {
 
 
 
+
       this.formCollectionService.getAll().subscribe(data => {
 
         this.formList = data
@@ -85,6 +94,7 @@ export class PetMapComponent implements OnInit {
 
             this.googleMarkerList.push(mark);
             this.lostGoogleMarkerList.push(mark);
+
             this.lostFormList.push(x);
 
           }
@@ -96,20 +106,21 @@ export class PetMapComponent implements OnInit {
               map: this.map
             })
             // Add a click listener for each marker, and set up the info window.
-            // mark.addListener("click", () => {
 
-            //   infoWindow.close();
-            //   infoWindow.setContent(x.name);
-            //   infoWindow.open(mark.getMap(), mark);
-            // });
             this.addMarkerAndFormCardListener(mark, x, infoWindow);
 
             this.googleMarkerList.push(mark);
             this.foundGoogleMarkerList.push(mark);
+
+
             this.foundFormList.push(x);
 
 
           }
+
+
+
+
         })
 
 
@@ -207,21 +218,16 @@ export class PetMapComponent implements OnInit {
 
     })
 
+  //Show Form if user is logged in
+  if(!this.authService.isAuthenticated()){
+    this.showForm = false;
+  }
+  else{
+    this.showForm = true;
+  }
 
 
 }
-
-
-// public createMarkerList(){
-
-//   this.markerList.forEach(location => {
-//     var marker = new google.maps.Marker({
-//       position: new google.maps.LatLng(location.lat, location.lng),
-//       map: this.map
-//     });
-//     console.log(marker)
-//   })
-// }
 
 
 
@@ -244,6 +250,8 @@ public hideFoundMarkersFromMarkerList(){
   this.lostGoogleMarkerList.forEach(x =>{
     x.setMap(this.map);
   })
+
+  console.warn("hide marks works")
   this.showSelectedFormFromMark = false;
   this.showFoundFormList=false;
   this.showLostFormList=true;
@@ -274,9 +282,7 @@ public addMarkerAndFormCardListener(googleMarker: google.maps.Marker, form: Form
   })
 }
 
-public onFormButtonClick(form: Form){
 
-}
 
 
 }

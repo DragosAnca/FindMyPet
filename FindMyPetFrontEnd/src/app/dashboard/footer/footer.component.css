@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  color: black;
+  background-color: #a08679;
+  margin-top: 1rem;
+  justify-content: space-evenly;
+}
+ul{
+  list-style: none;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.icon{
+  margin-top: 8px;
+}
+
+.links{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.links a{
+  padding-left: 1rem;
+
+}
+

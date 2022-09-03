@@ -30,8 +30,8 @@ namespace FindMyPetServer.Services
         public async Task<FormModel?> GetAsync(string id) =>
             await formCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
-        public async Task<List<FormModel?>> GetAsyncByEmail(string email) =>
-            await formCollection.Find(x => x.Username == email).ToListAsync();
+        public async Task<List<FormModel?>> GetAsyncByUsername(string username) =>
+            await formCollection.Find(x => x.Username == username).ToListAsync();
 
         public async Task CreateAsync(FormModel newForm) =>
             await formCollection.InsertOneAsync(newForm);

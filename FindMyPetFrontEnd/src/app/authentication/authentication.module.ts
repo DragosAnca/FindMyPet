@@ -9,13 +9,17 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    AuthenticationComponent],
+    AuthenticationComponent,
+    ForgotPasswordComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -23,9 +27,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AuthenticationRoutingModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+
 
   ],
+
 
   bootstrap: [AuthenticationModule],
 })

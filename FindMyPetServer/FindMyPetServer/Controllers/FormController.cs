@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EmailService;
 using FindMyPetServer.Interfaces;
 using FindMyPetServer.Models;
 using FindMyPetServer.Services;
@@ -14,17 +15,22 @@ namespace FindMyPetServer.Controllers
     public class FormController : ControllerBase
     {
         private readonly IFormService formService;
+        private readonly IEmailSender emailSender;
 
 
-        public FormController(IFormService formService) =>
-            this.formService = formService;
+        public FormController(IFormService formService, IEmailSender emailSender)
+        {
+        
+        this.formService = formService;
+        this.emailSender = emailSender;
+        }
 
         [HttpGet]
         public async Task<List<FormModel>> Get() =>
             await formService.GetAsync();
 
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<FormModel>> GetById(string id)
         {
             var form = await formService.GetAsync(id);
@@ -37,8 +43,9 @@ namespace FindMyPetServer.Controllers
             return form;
         }
 
-        [HttpGet("email/{Email}")]
-        public async Task<List<FormModel>> GetByEmail(string email) => await formService.GetAsyncByEmail(email);
+        [HttpGet("username/{username}")]
+        public async Task<List<FormModel>> GetByEmail(string username) => await formService.GetAsyncByUsername(username);
+
 
         [HttpPost("createform")]
         public async Task<IActionResult> Post(FormModel newForm)
@@ -50,7 +57,7 @@ namespace FindMyPetServer.Controllers
 
         }
 
-        [HttpPut("{id:length(24)}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, FormModel updatedForm)
         {
             var form = await formService.GetAsync(id);
@@ -66,7 +73,7 @@ namespace FindMyPetServer.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             var form = await formService.GetAsync(id);
@@ -78,7 +85,7 @@ namespace FindMyPetServer.Controllers
 
             await formService.RemoveAsync(id);
 
-            return NoContent();
+            return Ok();
         }
     }
 }

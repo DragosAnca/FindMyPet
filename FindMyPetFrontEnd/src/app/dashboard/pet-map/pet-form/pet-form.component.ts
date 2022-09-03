@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable, Subscriber } from 'rxjs';
 import { Coordinates } from 'src/app/@core/models/coordinates';
 import { Form } from 'src/app/@core/models/form';
 import { FormCollectionService } from 'src/app/@core/services/form-collection.service';
+import { LocalStorageService } from 'src/app/@core/services/local-storage-service.service';
 
 @Component({
   selector: 'app-pet-form',
@@ -13,6 +15,49 @@ export class PetFormComponent implements OnInit {
 
   location: string;
   @Input() coordinates = new Coordinates;
+
+  myImage!: Observable<any>;
+
+  base64code!: any;
+
+  onChange =($event: Event) => {
+    const target = $event.target as HTMLInputElement;
+
+    const file: File = (target.files as FileList)[0];
+
+    console.log(file)
+    this.convertToBase64(file);
+  }
+
+  convertToBase64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) =>{
+      this.readFile(file, subscriber)
+    })
+
+    observable.subscribe((data) => {
+      this.base64code = data;
+    })
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>){
+    const fileReader = new FileReader();
+
+    fileReader.readAsDataURL(file)
+
+    fileReader.onload = () => {
+      subscriber.next(fileReader.result);
+
+      subscriber.complete();
+    }
+
+    fileReader.onerror = () => {
+      subscriber.error();
+
+      subscriber.complete();
+    }
+
+
+  }
 
   petForm = new FormGroup ({
 
@@ -30,10 +75,12 @@ export class PetFormComponent implements OnInit {
     //TODO make the on click event to update the location with lat, lng
     emailContact: new FormControl(''),
     phone: new FormControl(''),
-    username: new FormControl(''),
   })
 
-  constructor(private formCollectionService: FormCollectionService ) {
+  constructor(
+    private formCollectionService: FormCollectionService,
+    private localStorageService: LocalStorageService
+    ) {
 
   }
 
@@ -44,33 +91,9 @@ export class PetFormComponent implements OnInit {
 
 
     console.warn(this.coordinates.lat +"lat<-"+this.coordinates.lng+"<-lng" +"coordinates")
-    // console.warn("location on submit" + this.location)
-    // const lat = this.location.split(' ,  ', 7)[0] as unknown as number;
-    // const lng = this.location.split(' ,  ', 7)[1] as unknown as number;
-    // console.warn(lat+'=lat' + lng+'=lng')
-    // const newform = new Form(
-    //   this.petForm.value.lostOrFoundPet,
-    //   this.petForm.value.species,
-    //   this.petForm.value.breed,
-    //   this.petForm.value.name,
-    //   this.petForm.value.accesories,
-    //   this.petForm.value.color,
-    //   this.petForm.value.sized,
-    //   this.petForm.value.chip,
-    //   this.petForm.value.marks,
-    //   this.petForm.value.pic,
-    //   {lat: lat, lng: lng},
-    //   '',
-    //   '',
-    //   ''
-    // )
+
     var form: Form = {...this.petForm.value}
     console.warn(this.petForm.value);
-    // form.lat = this.location.split(' ,  ', 7)[0] as unknown as number ;
-    // console.warn(form.lat);
-    // form.lng = this.location.split(' ,  ', 7)[1] as unknown as number;
-    // console.log(form.lng)
-
 
     form.lat = "";
     form.lat += this.coordinates.lat;
@@ -78,7 +101,14 @@ export class PetFormComponent implements OnInit {
     console.warn("form.lat =" + form.lat + "coordinates.lat= "+this.coordinates.lat)
     form.lng = "";
     form.lng += this.coordinates.lng;
-    this.formCollectionService.createForm(form)
+
+    form.username = this.localStorageService.get("username");
+    console.warn("form.username", form.username);
+
+    form.pic = this.base64code;
+    console.log(form.pic);
+
+    this.formCollectionService.createForm(form);
 
   }
 

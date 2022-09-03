@@ -1,0 +1,60 @@
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #24252a;
+  width: 100%;
+
+}
+
+.links-container{
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.links-container a {
+  font-size: medium;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+.links-container a:hover {
+  color: #a08679;
+  transition: all 0.3s ease 0s;
+}
+.login-container{
+  width: 15%;
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  padding-right: 1rem;
+
+}
+
+.login-container a{
+  font-size: medium;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #edf0f1;
+  text-decoration: none;
+
+}
+
+.login-container a:hover {
+  color: #a08679;
+  transition: all 0.3s ease 0s;
+}
+
+.logo{
+  padding-left: 1rem;
+}
+
+.logout-button:hover{
+  color: red !important;
+}

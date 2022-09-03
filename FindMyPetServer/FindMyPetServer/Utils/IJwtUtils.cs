@@ -1,6 +1,4 @@
-﻿using FindMyPetServer.Models;
-
-namespace FindMyPetServer.Utils
+﻿namespace FindMyPetServer.Utils
 {
     public interface IJwtUtils
     {

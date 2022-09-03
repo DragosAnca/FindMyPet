@@ -20,18 +20,19 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.email),
+      username: new FormControl('',Validators.required),
+      password: new FormControl('', Validators.required)
     });
   }
 
   public register(): void{
     const user: User = {...this.registerForm.value};
 
-    //TODO Add empty array of user forms in server db and front
+
     this.authenticationService.register(user);
 
-    this.router.navigate(['auth/login']);
+
   }
 
 }

@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using EmailService;
 using FindMyPetServer.Interfaces;
 using FindMyPetServer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace FindMyPetServer.Controllers
 {
@@ -15,10 +18,12 @@ namespace FindMyPetServer.Controllers
     public class UserController : Controller
     {
         private readonly IUserService userService;
+        private readonly IEmailSender emailSender;
         //DI
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IEmailSender emailSender)
         {
             this.userService = userService;
+            this.emailSender = emailSender;
         }
 
         
@@ -28,10 +33,10 @@ namespace FindMyPetServer.Controllers
             return userService.GetUsers();
         }
 
-        [HttpGet("{id:length(24)}")]
-        public ActionResult<User> GetUser(string id)
+        [HttpGet("{username}")]
+        public ActionResult<User> GetUser(string username)
         {
-            var user = userService.GetUser(id);
+            var user = userService.GetUser(username);
 
             return Json(user);
         }
@@ -55,21 +60,32 @@ namespace FindMyPetServer.Controllers
         }
 
         [AllowAnonymous]
+        [Route("forgot/{email}")]
+        [HttpGet]
+        public ActionResult ForgotPassword(string email)
+        {
+            var message = new Message(new string[] { email }, "FindMyPet Password", userService.GetUserByEmail(email).Password);
+            this.emailSender.SendEmailAsync(message);
+
+            return Conflict("done");
+
+        }
+
+        [AllowAnonymous]
         [Route("login")]
         [HttpPost]
         public ActionResult Login( [FromBody] User user)
         {
-            var token = userService.Authenticate(user.Email, user.Password);
+            var token = userService.Authenticate(user.Username, user.Password);
 
             if (token == null)
                 return Conflict("Username or password incorrect");
 
-            // if ((userService.GetUsers().FirstOrDefault(x => x.Password.Equals(user.Password)) is null))
-            // {
-            //     return Conflict("password incorrect");
-            // }
+
 
             return Ok(new {token, user});
         }
+
+
     }
 }

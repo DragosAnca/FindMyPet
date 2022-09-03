@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tips-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.wait{
+  background: linear-gradient(to bottom, rgba(230, 222, 222, 0.667),rgba(242, 237, 237, 0.782)), url(src\app\shared\shared-resources\timer.jpg) center;
+  border: solid;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 450;
+  width: 80%;
+  padding: 2%;
+  border-radius: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: cubic-bezier(0.39, 0.575, 0.565, 1);
+
+}
+
+.wait:hover{
+  box-shadow: 0 0 10px 0px #a08679;
+  transition:cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+
+}
+
+.flyer{
+  background: linear-gradient(to bottom, rgba(230, 222, 222, 0.667),rgba(242, 237, 237, 0.782)), url(src\app\shared\shared-resources\lostpet.jpg) center;
+  border: solid;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 450;
+  width: 80%;
+  padding: 2%;
+  border-radius: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+
+}
+
+.flyer:hover{
+  box-shadow: 0 0 10px 0px #a08679;
+  transition:cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+}
+
+.search{
+  background: linear-gradient(to bottom, rgba(230, 222, 222, 0.667),rgba(242, 237, 237, 0.782)), url(src\app\shared\shared-resources\magnifyinglass.jpg) center;
+  border: solid;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 450;
+  width: 80%;
+  padding: 2%;
+  border-radius: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+
+}
+
+.search:hover{
+  box-shadow: 0 0 10px 0px #a08679;
+  transition:cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+
+}
+.collar-tag{
+  background: linear-gradient(to bottom, rgba(230, 222, 222, 0.667),rgba(242, 237, 237, 0.782)), url(src\app\shared\shared-resources\collar.jpg) center;
+  border: solid;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 450;
+  width: 80%;
+  padding: 2%;
+  border-radius: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+
+}
+
+.collar-tag:hover{
+  box-shadow: 0 0 10px 0px #a08679;
+  transition:cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+
+}
+.microchip{
+  background: linear-gradient(to bottom, rgba(230, 222, 222, 0.667),rgba(242, 237, 237, 0.782)), url(src\app\shared\shared-resources\chip.jpeg) top;
+  border: solid;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 450;
+  width: 80%;
+  padding: 2%;
+  border-radius: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+
+}
+
+.microchip:hover{
+  box-shadow: 0 0 10px 0px #a08679;
+  transition:cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+
+}
