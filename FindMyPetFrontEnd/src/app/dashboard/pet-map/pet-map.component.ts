@@ -55,7 +55,7 @@ export class PetMapComponent implements OnInit {
     //load the google map on the browser
 
     let loader = new Loader({
-      apiKey: 'AIzaSyDK_j5J4mn0O15yftYyrA3f0qAVVwdKhzs',
+      apiKey: '"**********',
       libraries: ['places']
     });
 
