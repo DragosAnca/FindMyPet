@@ -68,7 +68,7 @@ namespace FindMyPetServer
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey =
                             new SymmetricSecurityKey(
-                                Encoding.UTF8.GetBytes("dragos13b12312312321312312312312323131")),
+                                Encoding.UTF8.GetBytes("**********")),
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };
